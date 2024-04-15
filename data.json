@@ -1,0 +1,138 @@
+[
+    {
+        "model": "publisher",
+        "pk": 1,
+        "fields": {
+            "name": "AST"
+        }
+    },
+    {
+        "model": "publisher",
+        "pk": 2,
+        "fields": {
+            "name": "eksmo"
+        }
+    },
+    {
+        "model": "book",
+        "pk": 1,
+        "fields": {
+            "title": "The Catcher in the Rye",
+            "publisher_id": 1
+        }
+    },
+    {
+        "model": "book",
+        "pk": 2,
+        "fields": {
+            "title": "An American Tragedy",
+            "publisher_id": 2
+        }
+    },
+    {
+        "model": "book",
+        "pk": 3,
+        "fields": {
+            "title": "To Kill a Mockingbird",
+            "publisher_id": 1
+        }
+    },
+    {
+        "model": "book",
+        "pk": 4,
+        "fields": {
+            "title": "The Green Mile",
+            "publisher_id": 2
+        }
+    },
+    {
+        "model": "shop",
+        "pk": 1,
+        "fields": {
+            "name": "Bookvoed"
+        }
+    },
+    {
+        "model": "shop",
+        "pk": 2,
+        "fields": {
+            "name": "Book24"
+        }
+    },
+    {
+        "model": "stock",
+        "pk": 1,
+        "fields": {
+            "book_id": 1,
+            "shop_id": 1,
+            "count": 50
+        }
+    },
+    {
+        "model": "stock",
+        "pk": 2,
+        "fields": {
+            "book_id": 2,
+            "shop_id": 2,
+            "count": 30
+        }
+    },
+    {
+        "model": "stock",
+        "pk": 3,
+        "fields": {
+            "book_id": 3,
+            "shop_id": 2,
+            "count": 45
+        }
+    },
+    {
+        "model": "stock",
+        "pk": 4,
+        "fields": {
+            "book_id": 4,
+            "shop_id": 1,
+            "count": 70
+        }
+    },
+    {
+        "model": "sale",
+        "pk": 1,
+        "fields": {
+            "price": 999.99,
+            "date_sale": "2024-04-14",
+            "stock_id": 1,
+            "count": 20
+        }
+    },
+    {
+        "model": "sale",
+        "pk": 2,
+        "fields": {
+            "price": 700,
+            "date_sale": "2024-03-10",
+            "stock_id": 2,
+            "count": 10
+        }
+    },
+    {
+        "model": "sale",
+        "pk": 3,
+        "fields": {
+            "price": 300,
+            "date_sale": "2024-1-1",
+            "stock_id": 3,
+            "count": 45
+        }
+    },
+    {
+        "model": "sale",
+        "pk": 4,
+        "fields": {
+            "price": 100,
+            "date_sale": "2023-12-21",
+            "stock_id": 4,
+            "count": 93
+        }
+    }
+]
