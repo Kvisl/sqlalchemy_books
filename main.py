@@ -15,7 +15,6 @@ DB_PORT = os.getenv('DB_PORT', '5432')
 
 DSN = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 engine = sqlalchemy.create_engine(DSN)
-
 create_table(engine)
 
 Session = sessionmaker(bind=engine)
@@ -34,16 +33,26 @@ for record in data:
     session.add(model(id=record.get('pk'), **record.get('fields')))
 session.commit()
 
-publ = input("Enter the publisher's name: ")
 
-query = sq.select(Book.title, Shop.name, Sale.price, Sale.date_sale) \
-    .select_from(Book) \
-    .join(Publisher, Publisher.id == Book.publisher_id) \
-    .join(Stock, Stock.book_id == Book.id) \
-    .join(Shop, Shop.id == Stock.shop_id) \
-    .join(Sale, Sale.stock_id == Stock.id) \
-    .where(Publisher.name == publ)
+def get_shops(publisher_input):
+    query = sq.select(Book.title, Shop.name, Sale.price, Sale.date_sale) \
+        .select_from(Book) \
+        .join(Publisher, Publisher.id == Book.publisher_id) \
+        .join(Stock, Stock.book_id == Book.id) \
+        .join(Shop, Shop.id == Stock.shop_id) \
+        .join(Sale, Sale.stock_id == Stock.id) \
 
-results = session.execute(query).all()
-for result in results:
-    print('{} | {} | {} | {}'.format(result[0], result[1], result[2], result[3].strftime('%d-%m-%Y')))
+
+    if publisher_input.isdigit():
+        results = session.execute(query.filter(Publisher.id == publisher_input)).all()
+    else:
+        results = session.execute(query.filter(Publisher.name == publisher_input)).all()
+
+    for title, shop_name, sale_price, data_sale in results:
+        print(f'{title: <30} | {shop_name: <10} | {sale_price: <8} | {data_sale.strftime("%d-%m-%Y")}')
+
+
+if __name__ == '__main__':
+    publisher_input = input("Enter the publisher's name or id: ")
+    get_shops(publisher_input)
+
